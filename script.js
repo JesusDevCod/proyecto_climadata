@@ -8,13 +8,13 @@ const cityHide = document.querySelector('.city-hide');
 search.addEventListener('click', () => {
 
 
-    const APYKey = 'e78e5bd43970fffcdf9ba1e96d99e587';
+    const APIKey = 'e78e5bd43970fffcdf9ba1e96d99e587';
     const city = document.querySelector('.search-box input').value;
 
     if(city == '')
         return;
 
-    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${APYKey}`).then(response => response.json()).then(json => {
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${APIKey}`).then(response => response.json()).then(json => {
 
         if (json.cod == '404') {
             cityHide.textContent = city;
@@ -51,32 +51,31 @@ search.addEventListener('click', () => {
                 case 'Clear':
                     image.src = 'images/sun.png';
                     break;
-    
+
                 case 'Rain':
                     image.src = 'images/nublluv.png';
                     break;
-    
+
                 case 'Snow':
                     image.src = 'images/nieve.png';
                     break;
-    
+
                 case 'Clouds':
                     image.src = 'images/sun-nub.png';
                     break;
-    
+
                 case 'Mist':
                     image.src = 'images/nubvn.png';
                     break;
-        
+
                 case 'Haze':
                     image.src = 'images/nubvn.png';
                     break;
-    
+  
                 default:
                     image.src = 'images/sun-nub.png';
-    
-    
             }
+        
     
             temperature.innerHTML = `${parseInt(json.main.temp)}<span>°C</span>`;
             description.innerHTML = `${json.weather[0].description}`;
